@@ -1,0 +1,390 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Diagnostics;
+using System.Web.UI.WebControls;
+using System.Web.UI;
+using MySql.Data.MySqlClient;
+using System.Data;
+
+namespace _9dotWebApp.DataObject
+{
+    public class HelperClass
+    {
+        DataObject.DbConnection conn;
+        MySqlConnection sqlconn;
+
+        public HelperClass() {
+
+        }
+
+        public String getMonthIdForMonth(String month_name)
+        {
+            String m_id = "";
+
+            try
+            {
+                switch (month_name)
+                {
+                    case "Jan":
+                        m_id = "1";
+                        break;
+                    case "Feb":
+                        m_id = "2";
+                        break;
+                    case "Mar":
+                        m_id = "3";
+                        break;
+                    case "Apr":
+                        m_id = "4";
+                        break;
+                    case "May":
+                        m_id = "5";
+                        break;
+                    case "Jun":
+                        m_id = "6";
+                        break;
+                    case "Jul":
+                        m_id = "7";
+                        break;
+                    case "Aug":
+                        m_id = "8";
+                        break;
+                    case "Sep":
+                        m_id = "9";
+                        break;
+                    case "Oct":
+                        m_id = "10";
+                        break;
+                    case "Nov":
+                        m_id = "11";
+                        break;
+                    case "Dec":
+                        m_id = "12";
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+            return m_id;
+        }
+
+        public String getQuarterForMonth(String month_name)
+        {
+            String m_id = "";
+
+            try
+            {
+                switch (month_name)
+                {
+                    case "Jan":
+                        m_id = "Q1";
+                        break;
+                    case "Feb":
+                        m_id = "Q1";
+                        break;
+                    case "Mar":
+                        m_id = "Q1";
+                        break;
+                    case "Apr":
+                        m_id = "Q2";
+                        break;
+                    case "May":
+                        m_id = "Q2";
+                        break;
+                    case "Jun":
+                        m_id = "Q2";
+                        break;
+                    case "Jul":
+                        m_id = "Q3";
+                        break;
+                    case "Aug":
+                        m_id = "Q3";
+                        break;
+                    case "Sep":
+                        m_id = "Q3";
+                        break;
+                    case "Oct":
+                        m_id = "Q4";
+                        break;
+                    case "Nov":
+                        m_id = "Q4";
+                        break;
+                    case "Dec":
+                        m_id = "Q4";
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+            return m_id;
+        }
+
+        public void changeTextBoxEditingMode(List<TextBox> list, int editMode)
+        {
+            try
+            {
+                if (editMode == 0)
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        list[i].Enabled = false;
+                    }
+                }
+                else if (editMode == 1)
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        list[i].Enabled = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        public void changeTextBoxEditingMode(TextBox textbox, int editMode)
+        {
+            try
+            {
+                if (editMode == 0)
+                {
+                    textbox.Enabled = false;
+                }
+                else if (editMode == 1)
+                {
+                    textbox.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        public void changeButtonMode(Button button, int editMode)
+        {
+            try
+            {
+                if (editMode == 0)
+                {
+                    button.Enabled = false;
+                }
+                else if (editMode == 1)
+                {
+                    button.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        public void changeDropDownListMode(DropDownList dropdownlist, int editMode)
+        {
+            try
+            {
+                if (editMode == 0)
+                {
+                    dropdownlist.Enabled = false;
+                }
+                else if (editMode == 1)
+                {
+                    dropdownlist.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        public void showAlert(Page page, String message) {
+            try {
+                ScriptManager.RegisterStartupScript(page, page.GetType(),
+                    "err_msg",
+                    "alert('"+message+"');",
+                    true);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        public void showDialog(Page page, String dialog)
+        {
+            try
+            {
+                ScriptManager.RegisterStartupScript(page, page.GetType(),
+                    "err_msg",
+                    dialog,
+                    true);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        public void populateYearDropDown(DropDownList dropdownlist)
+        {
+            try
+            {
+                int currentYear = DateTime.Now.Year;
+
+                currentYear = currentYear - 2;
+                for (int i = 0; i < 100; i++)
+                {
+                    ListItem newItem = new ListItem(currentYear.ToString(), currentYear.ToString());
+                    dropdownlist.Items.Insert(i, newItem);
+                    currentYear++;
+                }
+                dropdownlist.DataBind();
+                ListItem item = new ListItem("", "");
+                dropdownlist.Items.Insert(0, item);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        public void populateCountries(DropDownList dropdownlist)
+        {
+            try
+            {
+                conn = new DataObject.DbConnection();
+                sqlconn = conn.getDatabaseConnection();
+
+                // Countries/Subsidiaries Dropdownlist
+                String query = "SELECT DISTINCT country_name FROM tb_verticals";
+                MySqlCommand cmd_countries = new MySqlCommand();
+                cmd_countries.Connection = sqlconn;
+                cmd_countries.CommandText = query;
+
+                MySqlDataAdapter da_countries = new MySqlDataAdapter(cmd_countries);
+                DataTable dt_countries = new DataTable();
+                da_countries.Fill(dt_countries);
+
+                dropdownlist.DataSource = dt_countries;
+                dropdownlist.DataValueField = dt_countries.Columns[0].ColumnName;
+                dropdownlist.DataTextField = dt_countries.Columns[0].ColumnName;
+                dropdownlist.DataBind();
+
+                ListItem item = new ListItem("", "");
+                dropdownlist.Items.Insert(0, item);
+
+                conn.closeConn(sqlconn);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        public void populateVerticals(String country, DropDownList dropdownlist)
+        {
+
+            try
+            {
+                conn = new DataObject.DbConnection();
+                sqlconn = conn.getDatabaseConnection();
+
+                // Verticals Dropdownlist
+                String query = "SELECT vertical_name FROM tb_verticals where country_name=@country";
+                MySqlCommand cmd_verticals = new MySqlCommand();
+                cmd_verticals.Connection = sqlconn;
+                cmd_verticals.CommandText = query;
+                cmd_verticals.Parameters.AddWithValue("@country", country);
+
+                MySqlDataAdapter da_verticals = new MySqlDataAdapter(cmd_verticals);
+                DataTable dt_verticals = new DataTable();
+                da_verticals.Fill(dt_verticals);
+
+                dropdownlist.DataSource = dt_verticals;
+                dropdownlist.DataValueField = dt_verticals.Columns[0].ColumnName;
+                dropdownlist.DataTextField = dt_verticals.Columns[0].ColumnName;
+                dropdownlist.DataBind();
+
+                ListItem item = new ListItem("", "");
+                dropdownlist.Items.Insert(0, item);
+
+                conn.closeConn(sqlconn);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        public String getCurrencyForCountry(String country, String vertical)
+        {
+            String curr = "";
+            try
+            {
+                conn = new DataObject.DbConnection();
+                sqlconn = conn.getDatabaseConnection();
+
+                String query = "SELECT currency_name"
+                                + " FROM tb_verticals"
+                                + " WHERE country_name = @country"
+                                + " AND vertical_name = @vertical";
+                MySqlCommand cmd_currency = new MySqlCommand();
+                cmd_currency.Connection = sqlconn;
+                cmd_currency.CommandText = query;
+                cmd_currency.Parameters.AddWithValue("@country", country);
+                cmd_currency.Parameters.AddWithValue("@vertical", vertical);
+
+                MySqlDataReader dr_data = cmd_currency.ExecuteReader();
+
+                if (dr_data.HasRows)
+                {
+                    while (dr_data.Read())
+                    {
+                        curr = dr_data["currency_name"].ToString();
+                    }
+                    dr_data.Close();
+                }
+                conn.closeConn(sqlconn);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+
+            return curr;
+        }
+
+        public void updateDimensionOnSubmission()
+        {
+            try
+            {
+                conn = new DataObject.DbConnection();
+                sqlconn = conn.getDatabaseConnection();
+
+                String query = "SET SQL_SAFE_UPDATES = 0;"
+                                + " update tb_report_data r"
+                                + " set r.dateid = (select d.id from dim_time d where d.year = r.year and d.month = r.month_id)";
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = sqlconn;
+                cmd.CommandText = query;
+
+                int rowCount = cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
+
+    }
+}

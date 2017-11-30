@@ -1,0 +1,25 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="9dot.master.cs" Inherits="_9dotWebApp._9dot" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+       
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:Button runat="server" Text="Setup Currency" OnClick="Unnamed1_Click"  />
+        <asp:Button runat="server" Text="Setup Budget" OnClick="Unnamed2_Click" />
+        <asp:Button ID="Button1" runat="server" Text="Report Data" OnClick="Button1_Click" />
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
