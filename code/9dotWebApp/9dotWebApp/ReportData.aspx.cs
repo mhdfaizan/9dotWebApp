@@ -1123,6 +1123,8 @@ namespace _9dotWebApp
                         helper.changeButtonMode(Button3_save, 0);
                         helper.changeButtonMode(Button4_submit, 0);
                         helper.changeButtonMode(Button6_view, 1);
+
+                        helper.updateDimensionOnSubmission("tb_report_data");
                     }
                 }
                 else

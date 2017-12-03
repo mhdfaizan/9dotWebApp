@@ -364,7 +364,7 @@ namespace _9dotWebApp.DataObject
             return curr;
         }
 
-        public void updateDimensionOnSubmission()
+        public void updateDimensionOnSubmission(String tableName)
         {
             try
             {
@@ -372,8 +372,8 @@ namespace _9dotWebApp.DataObject
                 sqlconn = conn.getDatabaseConnection();
 
                 String query = "SET SQL_SAFE_UPDATES = 0;"
-                                + " update tb_report_data r"
-                                + " set r.dateid = (select d.id from dim_time d where d.year = r.year and d.month = r.month_id)";
+                                + " update "+ tableName +" tb"
+                                + " set tb.DateId = (select d.id from dim_time d where d.year = tb.year and d.month = tb.month_id)";
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = sqlconn;
                 cmd.CommandText = query;
