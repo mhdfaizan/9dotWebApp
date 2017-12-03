@@ -1012,7 +1012,7 @@ namespace _9dotWebApp
 
 
                 String query = "INSERT"
-                                + " INTO tb_setup_budget("
+                                + " INTO tb_report_data("
                                 + " year"
                                 + ", month"
                                 + ", country"
@@ -1038,6 +1038,7 @@ namespace _9dotWebApp
                                 + ", share_of_results"
                                 + ", tax"
                                 + ", profit_after_tax"
+                                + ", ads_equity_share"
                                 + ", month_id"
                                 + ", currency"
                                 + ", edit_mode"

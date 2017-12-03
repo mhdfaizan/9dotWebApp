@@ -46,6 +46,8 @@
             <td style="text-align: right" class="auto-style5">
                 ADS Equity Share:
                 <asp:TextBox ID="TextBox20" runat="server"></asp:TextBox>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator18" runat="server" ControlToValidate="TextBox20" ValidationGroup="Group1" ErrorMessage="*" ValidationExpression="^[0-9]+([.][0-9]+)?$" ForeColor="#FFCC00"></asp:RegularExpressionValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator22" runat="server" ControlToValidate="TextBox20" ErrorMessage="*" ForeColor="Red" ValidationGroup="Group1"></asp:RequiredFieldValidator>
             </td>
             <td style="text-align: right">
                 Year:
@@ -368,7 +370,7 @@
                 <asp:Button ID="Button2_edit" runat="server" Text="Edit" OnClick="Button2_Click_EditData" ValidationGroup="ViewData"/>
             </td>
             <td>
-                <asp:Button ID="Button3_save" runat="server" Text="Save &amp; Exit" OnClick="Button3_Click_SaveData"/>
+                <asp:Button ID="Button3_save" runat="server" Text="Save &amp; Exit" OnClick="Button3_Click_SaveData" ValidationGroup="Group1"/>
             </td>
             <td>
                 <asp:Button ID="Button4_submit" runat="server" Text="Submit" OnClick="Button4_Click_SubmitData" OnClientClick="Confirm()"/>
