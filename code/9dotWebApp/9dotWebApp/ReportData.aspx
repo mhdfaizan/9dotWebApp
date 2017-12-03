@@ -104,7 +104,9 @@
     <table class="auto-style1" style="font-family: Calibri">
         <tr>
             <td class="auto-style3"><strong>Gross Revenue</strong></td>
-            <td class="auto-style2">&nbsp;</td>
+            <td class="auto-style2">
+                <asp:Label ID="Label33" runat="server" style="font-weight: 700"></asp:Label>
+            </td>
             <td class="auto-style2"><strong>Budget</strong></td>
         </tr>
         <tr>

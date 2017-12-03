@@ -386,5 +386,191 @@ namespace _9dotWebApp.DataObject
             }
         }
 
+        public Boolean checkRatesData(String year, String month, String currency, String valuesToCheck)
+        {
+            Boolean exists = false;
+            try
+            {
+                conn = new DataObject.DbConnection();
+                sqlconn = conn.getDatabaseConnection();
+                if (currency == "USD")
+                {
+                    exists = true;
+                }
+                else
+                {
+                    if (valuesToCheck == "CC")
+                    {
+                        String query = "SELECT cc_rate_value"
+                                   + " FROM tb_cc_rate"
+                                   + " WHERE year = @year"
+                                   + " AND month = @month"
+                                   + " AND currency = @currency"
+                                   + " AND edit_mode = '0'";
+
+                        MySqlCommand cmd_currency = new MySqlCommand();
+                        cmd_currency.Connection = sqlconn;
+                        cmd_currency.CommandText = query;
+                        cmd_currency.Parameters.AddWithValue("@year", year);
+                        cmd_currency.Parameters.AddWithValue("@month", month);
+                        cmd_currency.Parameters.AddWithValue("@currency", currency);
+
+                        MySqlDataReader dr_data = cmd_currency.ExecuteReader();
+
+                        if (dr_data.HasRows)
+                        {
+                            exists = true;
+                        }
+                        else
+                        {
+                            exists = false;
+                        }
+
+                    }
+                    else if (valuesToCheck == "Actual")
+                    {
+                        String query = "SELECT value"
+                                   + " FROM tb_fc_to_usd_actual"
+                                   + " WHERE year = @year"
+                                   + " AND month = @month"
+                                   + " AND currency = @currency"
+                                   + " AND edit_mode = '0'";
+
+                        MySqlCommand cmd_currency = new MySqlCommand();
+                        cmd_currency.Connection = sqlconn;
+                        cmd_currency.CommandText = query;
+                        cmd_currency.Parameters.AddWithValue("@year", year);
+                        cmd_currency.Parameters.AddWithValue("@month", month);
+                        cmd_currency.Parameters.AddWithValue("@currency", currency);
+
+                        MySqlDataReader dr_data = cmd_currency.ExecuteReader();
+
+                        if (dr_data.HasRows)
+                        {
+                            exists = true;
+                        }
+                        else
+                        {
+                            exists = false;
+                        }
+                    }
+
+                    conn.closeConn(sqlconn);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+
+            return exists;
+        }
+
+        public Decimal fetchRates(String year, String month, String currency, String valuesToCheck)
+        {
+            Decimal rate = 0;
+
+            try
+            {
+                conn = new DataObject.DbConnection();
+                sqlconn = conn.getDatabaseConnection();
+
+                if (currency == "USD")
+                {
+                    rate = 1;
+                }
+                else
+                {
+                    if (valuesToCheck == "CC")
+                    {
+                        String query = "SELECT cc_rate_value"
+                                    + " FROM tb_cc_rate cc "
+                                    + " WHERE year = @year"
+                                    + " AND month = @month"
+                                    + " AND currency = @currency";
+
+                        MySqlCommand cmd_currency = new MySqlCommand();
+                        cmd_currency.Connection = sqlconn;
+                        cmd_currency.CommandText = query;
+                        cmd_currency.Parameters.AddWithValue("@year", year);
+                        cmd_currency.Parameters.AddWithValue("@month", month);
+                        cmd_currency.Parameters.AddWithValue("@currency", currency);
+
+                        MySqlDataReader dr_data = cmd_currency.ExecuteReader();
+
+                        if (dr_data.HasRows)
+                        {
+                            while (dr_data.Read())
+                            {
+                                Decimal.TryParse(dr_data["cc_rate_value"].ToString(), out rate);
+                            }
+                            dr_data.Close();
+                        }
+                        else
+                        {
+                            rate = 1;
+                        }
+                    }
+                    else if (valuesToCheck == "Actual")
+                    {
+                        String query = "SELECT value"
+                                    + " FROM tb_fc_to_usd_actual"
+                                    + " WHERE year = @year"
+                                    + " AND month = @month"
+                                    + " AND currency = @currency";
+
+                        MySqlCommand cmd_currency = new MySqlCommand();
+                        cmd_currency.Connection = sqlconn;
+                        cmd_currency.CommandText = query;
+                        cmd_currency.Parameters.AddWithValue("@year", year);
+                        cmd_currency.Parameters.AddWithValue("@month", month);
+                        cmd_currency.Parameters.AddWithValue("@currency", currency);
+
+                        MySqlDataReader dr_data = cmd_currency.ExecuteReader();
+
+                        if (dr_data.HasRows)
+                        {
+                            while (dr_data.Read())
+                            {
+                                Decimal.TryParse(dr_data["value"].ToString(), out rate);
+                            }
+                            dr_data.Close();
+                        }
+                        else
+                        {
+                            rate = 1;
+                        }
+                    }
+                    conn.closeConn(sqlconn);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+            return rate;
+        }
+
+        public String applyRate(String value, Decimal rateApplied, Decimal adsShare, String page)
+        {
+            String returnValue = "";
+            Decimal appliedValue;
+            Decimal lc_value;
+            try
+            {
+                Decimal.TryParse(value, out lc_value);
+                appliedValue = lc_value / rateApplied;
+                if (page == "report")
+                {
+                    appliedValue = appliedValue * (adsShare / 100);
+                }
+                returnValue = Convert.ToString(Decimal.Round(appliedValue, 3));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+            return returnValue;
+        }
     }
 }

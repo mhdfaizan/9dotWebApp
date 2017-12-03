@@ -374,7 +374,10 @@ namespace _9dotWebApp
             DataObject.HelperClass helper = new DataObject.HelperClass();
             try
             {
-                Decimal rate = fetchRates();
+                String year = DropDownList5_year.SelectedValue;
+                String month = DropDownList4_month.SelectedValue;
+
+                Decimal rate = helper.fetchRates(year, month, currency, "CC");
                 conn = new DataObject.DbConnection();
                 sqlconn = conn.getDatabaseConnection();
 
@@ -446,26 +449,26 @@ namespace _9dotWebApp
                 cmd_insert.Parameters.AddWithValue("@country", DropDownList1_country.SelectedValue);
                 cmd_insert.Parameters.AddWithValue("@vertical", DropDownList2_vertical.SelectedValue);
                 cmd_insert.Parameters.AddWithValue("@type", type);
-                cmd_insert.Parameters.AddWithValue("@r_gmv", applyRate(TextBox1.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@r_gr", applyRate(TextBox2.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@dc_network", applyRate(TextBox3.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@dc_direct_labor", applyRate(TextBox4.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@dc_commissions", applyRate(TextBox5.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@dc_others", applyRate(TextBox6.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@dc_gross_profit", applyRate(Label6.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@o_manpower", applyRate(TextBox8.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@o_travelling", applyRate(TextBox9.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@o_it_charges", applyRate(TextBox10.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@o_marketing_costs", applyRate(TextBox11.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@o_professional_charges", applyRate(TextBox12.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@o_others", applyRate(TextBox13.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@ebitda", applyRate(Label7.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@depreciation", applyRate(TextBox15.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@net_interest", applyRate(TextBox16.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@others", applyRate(TextBox17.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@share_of_results", applyRate(TextBox18.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@tax", applyRate(TextBox19.Text, rate));
-                cmd_insert.Parameters.AddWithValue("@profit_after_tax", applyRate(Label8.Text, rate));
+                cmd_insert.Parameters.AddWithValue("@r_gmv", helper.applyRate(TextBox1.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@r_gr", helper.applyRate(TextBox2.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@dc_network", helper.applyRate(TextBox3.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@dc_direct_labor", helper.applyRate(TextBox4.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@dc_commissions", helper.applyRate(TextBox5.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@dc_others", helper.applyRate(TextBox6.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@dc_gross_profit", helper.applyRate(Label6.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@o_manpower", helper.applyRate(TextBox8.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@o_travelling", helper.applyRate(TextBox9.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@o_it_charges", helper.applyRate(TextBox10.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@o_marketing_costs", helper.applyRate(TextBox11.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@o_professional_charges", helper.applyRate(TextBox12.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@o_others", helper.applyRate(TextBox13.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@ebitda", helper.applyRate(Label7.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@depreciation", helper.applyRate(TextBox15.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@net_interest", helper.applyRate(TextBox16.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@others", helper.applyRate(TextBox17.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@share_of_results", helper.applyRate(TextBox18.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@tax", helper.applyRate(TextBox19.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@profit_after_tax", helper.applyRate(Label8.Text, rate, 0, "budget"));
                 cmd_insert.Parameters.AddWithValue("@month_id", Convert.ToInt32(monthId));
                 cmd_insert.Parameters.AddWithValue("@currency", currency);
                 cmd_insert.Parameters.AddWithValue("@edit_mode", "0");
@@ -701,9 +704,9 @@ namespace _9dotWebApp
                     ViewState["updateRow"] = false;
 
                     currency = helper.getCurrencyForCountry(DropDownList1_country.SelectedValue, DropDownList2_vertical.SelectedValue);
-                    int ratesExists = checkRatesData(DropDownList5_year.SelectedValue, DropDownList4_month.SelectedValue, "cc");
+                    Boolean ratesExist = helper.checkRatesData(DropDownList5_year.SelectedValue, DropDownList4_month.SelectedValue, currency, "CC");
 
-                    if (ratesExists == 1)
+                    if (ratesExist)
                     {
                         helper.changeDropDownListMode(DropDownList5_year, 0);
                         helper.changeDropDownListMode(DropDownList4_month, 0);
@@ -813,9 +816,9 @@ namespace _9dotWebApp
                 DataObject.HelperClass helper = new DataObject.HelperClass();
 
                 currency = helper.getCurrencyForCountry(DropDownList1_country.SelectedValue, DropDownList2_vertical.SelectedValue);
-                int ratesExists = checkRatesData(DropDownList5_year.SelectedValue, DropDownList4_month.SelectedValue, "cc");
+                Boolean ratesExist = helper.checkRatesData(DropDownList5_year.SelectedValue, DropDownList4_month.SelectedValue, currency, "CC");
 
-                if (ratesExists == 1)
+                if (ratesExist)
                 {
                     String year = DropDownList5_year.SelectedValue;
                     String month = DropDownList4_month.SelectedValue;
@@ -1000,128 +1003,7 @@ namespace _9dotWebApp
             {
                 Debug.WriteLine(ex.ToString());
             }
-        }
-
-        private int checkRatesData(String year, String month, String valuesToCheck) {
-            int exists = 0;
-            try
-            {
-                conn = new DataObject.DbConnection();
-                sqlconn = conn.getDatabaseConnection();
-
-                String query = "SELECT value, cc_rate_value"
-                                + " FROM tb_fc_to_usd_actual fcd, tb_cc_rate cc "
-                                + " WHERE fcd.year = @year"
-                                + " AND cc.year = @year"
-                                + " AND fcd.month = @month"
-                                + " AND cc.month = @month"
-                                + " AND fcd.currency = @currency"
-                                + " AND cc.currency = @currency";
-                                
-                MySqlCommand cmd_currency = new MySqlCommand();
-                cmd_currency.Connection = sqlconn;
-                cmd_currency.CommandText = query;
-                cmd_currency.Parameters.AddWithValue("@year", DropDownList5_year.SelectedValue);
-                cmd_currency.Parameters.AddWithValue("@month", DropDownList4_month.SelectedValue);
-                cmd_currency.Parameters.AddWithValue("@currency", currency);
-
-                MySqlDataReader dr_data = cmd_currency.ExecuteReader();
-
-                if (dr_data.HasRows)
-                {
-                    if (valuesToCheck == "cc") {
-                        if (dr_data["cc_rate_value"].ToString() != null)
-                        {
-                            exists = 1;
-                        }
-                        else {
-                            exists = 0;
-                        }
-                    } else if (valuesToCheck == "cc_actual")
-                    {
-                        if (dr_data["cc_rate_value"].ToString() != null && dr_data["value"].ToString() != null)
-                        {
-                            exists = 1;
-                        }
-                        else
-                        {
-                            exists = 0;
-                        }
-                    }
-                }
-                else
-                {
-                    exists = 0;
-                }
-                conn.closeConn(sqlconn);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.ToString());
-            }
-
-            return exists;
-        }
-
-        private Decimal fetchRates() {
-            Decimal cc_rate = 0; 
-
-            try {
-                conn = new DataObject.DbConnection();
-                sqlconn = conn.getDatabaseConnection();
-
-                String query = "SELECT cc_rate_value"
-                                + " FROM tb_cc_rate cc "
-                                + " WHERE year = @year"
-                                + " AND month = @month"
-                                + " AND currency = @currency";
-
-                MySqlCommand cmd_currency = new MySqlCommand();
-                cmd_currency.Connection = sqlconn;
-                cmd_currency.CommandText = query;
-                cmd_currency.Parameters.AddWithValue("@year", DropDownList5_year.SelectedValue);
-                cmd_currency.Parameters.AddWithValue("@month", DropDownList4_month.SelectedValue);
-                cmd_currency.Parameters.AddWithValue("@currency", currency);
-
-                MySqlDataReader dr_data = cmd_currency.ExecuteReader();
-
-                if (dr_data.HasRows)
-                {
-                    while (dr_data.Read())
-                    {
-                        Decimal.TryParse(dr_data["cc_rate_value"].ToString(), out cc_rate);
-                    }
-                    dr_data.Close();
-                }
-                else
-                {
-                    cc_rate = 1;
-                }
-                conn.closeConn(sqlconn);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.ToString());
-            }
-            return cc_rate;
-        }
-
-        private String applyRate(String value, Decimal rateApplied) {
-            String returnValue = "";
-            Decimal appliedValue;
-            Decimal lc_value;
-            try
-            {
-                Decimal.TryParse(value, out lc_value);
-                appliedValue = lc_value / rateApplied;
-                returnValue = Convert.ToString(Decimal.Round(appliedValue, 3));
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.ToString());
-            }
-            return returnValue;
-        }
+        }        
 
         private Boolean checkDataExists()
         {

@@ -57,6 +57,8 @@ namespace _9dotWebApp
             {
                 DataObject.HelperClass helper = new DataObject.HelperClass();
                 helper.changeButtonMode(Button2_edit, 0);
+
+                Label33.Text = DropDownList4_month.Text + ", " + DropDownList5_year.Text;
             }
             catch (Exception ex)
             {
@@ -70,6 +72,8 @@ namespace _9dotWebApp
             {
                 DataObject.HelperClass helper = new DataObject.HelperClass();
                 helper.changeButtonMode(Button2_edit, 0);
+
+                Label33.Text = DropDownList4_month.Text + ", " + DropDownList5_year.Text;
             }
             catch (Exception ex)
             {
@@ -248,10 +252,8 @@ namespace _9dotWebApp
                     monthId = helper.getMonthIdForMonth(DropDownList4_month.SelectedValue);
                     calculateValues();
                     updateSubmitData();
-                    //insertDataWithRatesApplied("Actual");
-                    //insertDataWithRatesApplied("CC");
-                    helper.changeButtonMode(Button4_submit, 0);
-                    helper.changeButtonMode(Button2_edit, 0);
+                    insertDataWithRatesApplied("Actual");
+                    insertDataWithRatesApplied("CC");
                 }
                 else
                 {
@@ -277,52 +279,64 @@ namespace _9dotWebApp
                 String country = DropDownList1_country.SelectedValue;
                 String vertical = DropDownList2_vertical.SelectedValue;
                 String type = DropDownList3_type.SelectedValue;
+                currency = helper.getCurrencyForCountry(country, vertical);
 
-                Boolean check = checkBudgetData(year, month, country, vertical, type);
-
-                if (check)
+                
+                Boolean ratesCheck = helper.checkRatesData(year, month, currency, "Actual");
+                if (ratesCheck)
                 {
-                    populateBudgetData(year, month, country, vertical, type);
-                    calculateValuesForBudget();
-                    populateReportData(year, month, country, vertical, type);
-                    calculateDCandOPEX();
-
-                    if (edit_mode == 0)
+                    Boolean budgetCheck = checkBudgetData(year, month, country, vertical, type);
+                    if (budgetCheck)
                     {
-                        helper.changeTextBoxEditingMode(textBoxList, 0);
-                        helper.changeDropDownListMode(DropDownList3_type, 1);
+                        populateBudgetData(year, month, country, vertical, type);
+                        calculateValuesForBudget();
+                        populateReportData(year, month, country, vertical, type);
+                        calculateDCandOPEX();
 
-                        helper.changeButtonMode(Button5_clear_all, 0);
-                        helper.changeButtonMode(Button2_edit, 0);
-                        helper.changeButtonMode(Button3_save, 0);
-                        helper.changeButtonMode(Button4_submit, 0);
+                        if (edit_mode == 0)
+                        {
+                            helper.changeTextBoxEditingMode(textBoxList, 0);
+                            helper.changeDropDownListMode(DropDownList3_type, 1);
+
+                            helper.changeButtonMode(Button5_clear_all, 0);
+                            helper.changeButtonMode(Button2_edit, 0);
+                            helper.changeButtonMode(Button3_save, 0);
+                            helper.changeButtonMode(Button4_submit, 0);
+                        }
+                        else if (edit_mode == 1)
+                        {
+                            helper.changeTextBoxEditingMode(textBoxList, 0);
+                            helper.changeDropDownListMode(DropDownList3_type, 0);
+
+                            helper.changeButtonMode(Button5_clear_all, 0);
+                            helper.changeButtonMode(Button2_edit, 1);
+                            helper.changeButtonMode(Button3_save, 0);
+                            helper.changeButtonMode(Button4_submit, 1);
+                        }
+                        else if (edit_mode == -1)
+                        {
+                            clearAllTextBoxes(textBoxList);
+                            helper.changeTextBoxEditingMode(textBoxList, 1);
+                            clearAllTextBoxes(textBoxList);
+
+                            helper.changeButtonMode(Button5_clear_all, 1);
+                            helper.changeButtonMode(Button3_save, 1);
+                            helper.changeButtonMode(Button2_edit, 0);
+                        }
+
                     }
-                    else if (edit_mode == 1)
+                    else
                     {
-                        helper.changeTextBoxEditingMode(textBoxList, 0);
-                        helper.changeDropDownListMode(DropDownList3_type, 0);
-
-                        helper.changeButtonMode(Button5_clear_all, 0);
-                        helper.changeButtonMode(Button2_edit, 1);
-                        helper.changeButtonMode(Button3_save, 0);
-                        helper.changeButtonMode(Button4_submit, 1);
-                    }
-                    else if (edit_mode == -1)
-                    {
+                        clearBudgetValues(budgetLabelList);
                         clearAllTextBoxes(textBoxList);
-                        helper.changeTextBoxEditingMode(textBoxList, 1);
-                        clearAllTextBoxes(textBoxList);
-
-                        helper.changeButtonMode(Button5_clear_all, 1);
-                        helper.changeButtonMode(Button3_save, 1);
-                        helper.changeButtonMode(Button2_edit, 0);
+                        helper.showAlert(this.Page, "You do not have Setup Budget data entered for the selected year & month. \\nPlease add the required data before proceeding with Report Data!");
                     }
-
                 }
-                else {
+                else
+                {
                     clearBudgetValues(budgetLabelList);
                     clearAllTextBoxes(textBoxList);
-                    helper.showAlert(this.Page, "You do not have Setup Budget data entered for the selected year & month. \\nPlease add data before proceeding with Report Data!");
+                    helper.showAlert(this.Page, "You do not have Actual rates data entered for the selected year & month. \\nPlease add the required data before proceeding with Report Data!");
                 }
             }
             catch (Exception ex)
@@ -981,6 +995,148 @@ namespace _9dotWebApp
             }
         }
 
+        private void insertDataWithRatesApplied(String type)
+        {
+            DataObject.HelperClass helper = new DataObject.HelperClass();
+            try
+            {
+                Decimal ads_equity_share;
+                Decimal.TryParse(TextBox20.Text, out ads_equity_share);
+                String year = DropDownList5_year.SelectedValue;
+                String month = DropDownList4_month.SelectedValue;
+
+                Decimal rate = helper.fetchRates(year, month, currency, type);
+                conn = new DataObject.DbConnection();
+                sqlconn = conn.getDatabaseConnection();
+                
+
+
+                String query = "INSERT"
+                                + " INTO tb_setup_budget("
+                                + " year"
+                                + ", month"
+                                + ", country"
+                                + ", vertical"
+                                + ", type"
+                                + ", r_gmv"
+                                + ", r_gr"
+                                + ", dc_network"
+                                + ", dc_direct_labor"
+                                + ", dc_commissions"
+                                + ", dc_others"
+                                + ", dc_gross_profit"
+                                + ", o_manpower"
+                                + ", o_travelling"
+                                + ", o_it_charges"
+                                + ", o_marketing_costs"
+                                + ", o_professional_charges"
+                                + ", o_others"
+                                + ", ebitda"
+                                + ", depreciation"
+                                + ", net_interest"
+                                + ", others"
+                                + ", share_of_results"
+                                + ", tax"
+                                + ", profit_after_tax"
+                                + ", month_id"
+                                + ", currency"
+                                + ", edit_mode"
+                                + ") values ("
+                                + " @year"
+                                + ", @month"
+                                + ", @country"
+                                + ", @vertical"
+                                + ", @type"
+                                + ", @r_gmv"
+                                + ", @r_gr"
+                                + ", @dc_network"
+                                + ", @dc_direct_labor"
+                                + ", @dc_commissions"
+                                + ", @dc_others"
+                                + ", @dc_gross_profit"
+                                + ", @o_manpower"
+                                + ", @o_travelling"
+                                + ", @o_it_charges"
+                                + ", @o_marketing_costs"
+                                + ", @o_professional_charges"
+                                + ", @o_others"
+                                + ", @ebitda"
+                                + ", @depreciation"
+                                + ", @net_interest"
+                                + ", @others"
+                                + ", @share_of_results"
+                                + ", @tax"
+                                + ", @profit_after_tax"
+                                + ", @ads_equity_share"
+                                + ", @month_id"
+                                + ", @currency"
+                                + ", @edit_mode)";
+
+                MySqlCommand cmd_insert = new MySqlCommand();
+                cmd_insert.Connection = sqlconn;
+                cmd_insert.CommandText = query;
+                cmd_insert.Parameters.AddWithValue("@year", DropDownList5_year.SelectedValue);
+                cmd_insert.Parameters.AddWithValue("@month", DropDownList4_month.SelectedValue);
+                cmd_insert.Parameters.AddWithValue("@country", DropDownList1_country.SelectedValue);
+                cmd_insert.Parameters.AddWithValue("@vertical", DropDownList2_vertical.SelectedValue);
+                cmd_insert.Parameters.AddWithValue("@type", type);
+                cmd_insert.Parameters.AddWithValue("@r_gmv", helper.applyRate(TextBox1.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@r_gr", helper.applyRate(TextBox2.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@dc_network", helper.applyRate(TextBox3.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@dc_direct_labor", helper.applyRate(TextBox4.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@dc_commissions", helper.applyRate(TextBox5.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@dc_others", helper.applyRate(TextBox6.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@dc_gross_profit", helper.applyRate(Label6.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@o_manpower", helper.applyRate(TextBox8.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@o_travelling", helper.applyRate(TextBox9.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@o_it_charges", helper.applyRate(TextBox10.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@o_marketing_costs", helper.applyRate(TextBox11.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@o_professional_charges", helper.applyRate(TextBox12.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@o_others", helper.applyRate(TextBox13.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@ebitda", helper.applyRate(Label7.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@depreciation", helper.applyRate(TextBox15.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@net_interest", helper.applyRate(TextBox16.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@others", helper.applyRate(TextBox17.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@share_of_results", helper.applyRate(TextBox18.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@tax", helper.applyRate(TextBox19.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@profit_after_tax", helper.applyRate(Label8.Text, rate, ads_equity_share, "report"));
+                cmd_insert.Parameters.AddWithValue("@ads_equity_share", ads_equity_share);
+                cmd_insert.Parameters.AddWithValue("@month_id", Convert.ToInt32(monthId));
+                cmd_insert.Parameters.AddWithValue("@currency", currency);
+                cmd_insert.Parameters.AddWithValue("@edit_mode", "0");
+
+                int rowCount = cmd_insert.ExecuteNonQuery();
+                if (rowCount >= 1)
+                {
+
+                    helper.showAlert(this.Page, "Data saved successfully!");
+
+                    if (type == "CC")
+                    {
+                        helper.changeDropDownListMode(DropDownList3_type, 1);
+
+                        helper.changeTextBoxEditingMode(textBoxList, 0);
+
+                        helper.changeButtonMode(Button5_clear_all, 0);
+                        helper.changeButtonMode(Button2_edit, 0);
+                        helper.changeButtonMode(Button3_save, 0);
+                        helper.changeButtonMode(Button4_submit, 0);
+                        helper.changeButtonMode(Button6_view, 1);
+                    }
+                }
+                else
+                {
+                    helper.showAlert(this.Page, "Please check your data for errors!");
+                }
+                conn.closeConn(sqlconn);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+                helper.showAlert(this.Page, "Please check your data for errors!");
+            }
+        }
+
         private void calculateValuesForBudget()
         {
             try
@@ -1145,7 +1301,6 @@ namespace _9dotWebApp
                 Debug.WriteLine(ex.ToString());
             }
         }
-
 
     }
 }
