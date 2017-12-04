@@ -855,12 +855,12 @@ namespace _9dotWebApp
                     else if (edit_mode == -1)
                     {
                         clearAllTextBoxes(textBoxList);
-                        helper.changeTextBoxEditingMode(textBoxList, 1);
+                        helper.changeTextBoxEditingMode(textBoxList, 0);
                         clearAllTextBoxes(textBoxList);
 
-                        helper.changeButtonMode(Button5_clear_all, 1);
-                        helper.changeButtonMode(Button3_save, 1);
-                        helper.changeButtonMode(Button2_edit, 0);
+                        helper.changeButtonMode(Button5_clear_all, 0);
+                        helper.changeButtonMode(Button3_save, 0);
+                        helper.changeButtonMode(Button2_edit, 1);
                     }
                 }
                 else

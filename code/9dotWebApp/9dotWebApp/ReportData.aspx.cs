@@ -316,19 +316,19 @@ namespace _9dotWebApp
                         else if (edit_mode == -1)
                         {
                             clearAllTextBoxes(textBoxList);
-                            helper.changeTextBoxEditingMode(textBoxList, 1);
+                            helper.changeTextBoxEditingMode(textBoxList, 0);
                             clearAllTextBoxes(textBoxList);
 
-                            helper.changeButtonMode(Button5_clear_all, 1);
-                            helper.changeButtonMode(Button3_save, 1);
-                            helper.changeButtonMode(Button2_edit, 0);
+                            helper.changeButtonMode(Button5_clear_all, 0);
+                            helper.changeButtonMode(Button3_save, 0);
+                            helper.changeButtonMode(Button2_edit, 1);
                         }
-
                     }
                     else
                     {
                         clearBudgetValues(budgetLabelList);
                         clearAllTextBoxes(textBoxList);
+                        helper.changeButtonMode(Button4_submit, 0);
                         helper.showAlert(this.Page, "You do not have Setup Budget data entered for the selected year & month. \\nPlease add the required data before proceeding with Report Data!");
                     }
                 }
@@ -336,6 +336,7 @@ namespace _9dotWebApp
                 {
                     clearBudgetValues(budgetLabelList);
                     clearAllTextBoxes(textBoxList);
+                    helper.changeButtonMode(Button4_submit, 0);
                     helper.showAlert(this.Page, "You do not have Actual rates data entered for the selected year & month. \\nPlease add the required data before proceeding with Report Data!");
                 }
             }
@@ -633,13 +634,6 @@ namespace _9dotWebApp
                 }
                 else
                 {
-                    //if (Session["rowId"] != null && !Session["rowId"].Equals("-1"))
-                    //{
-                    //    Session["rowId"] = null;
-                    //    DropDownList3_type.SelectedIndex = 0;
-                    //    populateGridData(year, month, country, vertical, DropDownList3_type.SelectedValue);
-                    //    helper.changeDropDownListMode(DropDownList3_type, 0);
-                    //}
                     edit_mode = -1;
                 }
                 conn.closeConn(sqlconn);
