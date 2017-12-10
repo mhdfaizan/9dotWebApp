@@ -521,7 +521,7 @@ namespace _9dotWebApp
 
                         helper.updateDimensionOnSubmission("tb_setup_budget");
 
-                        populateGridData(year, month, country, vertical, type);
+                        populateGridData(year, month, country, vertical, "Local Currency");
                         calculateDCandOPEX(0);
                     }
                 }

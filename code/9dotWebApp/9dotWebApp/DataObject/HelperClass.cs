@@ -569,7 +569,14 @@ namespace _9dotWebApp.DataObject
                 appliedValue = lc_value / rateApplied;
                 if (page == "report")
                 {
-                    appliedValue = appliedValue * (adsShare / 100);
+                    if (adsShare == 0)
+                    {
+                        appliedValue = appliedValue * 1;
+                    }
+                    else {
+                        appliedValue = appliedValue * (adsShare / 100);
+                    }
+                    
                 }
                 returnValue = Convert.ToString(Decimal.Round(appliedValue, 3));
             }
@@ -588,7 +595,13 @@ namespace _9dotWebApp.DataObject
             try
             {
                 Decimal.TryParse(value.Trim().TrimStart('0'), out lc_value);
-                appliedValue = lc_value * (adsShare / 100);
+                if (adsShare == 0)
+                {
+                    appliedValue = lc_value * 1;
+                }
+                else {
+                    appliedValue = lc_value * (adsShare / 100);
+                }
                 returnValue = Convert.ToString(Decimal.Round(appliedValue, 3));
             }
             catch (Exception ex)

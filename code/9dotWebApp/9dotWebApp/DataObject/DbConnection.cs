@@ -22,8 +22,7 @@ namespace _9dotWebApp.DataObject
         public DbConnection()
         {
             // Below database connection for local machine
-            //constr = "Server=localhost;Port=3306;Database=axiata;User ID=faizan;Password=admin123";
-            //constr = "Server=localhost;Port=3306;Database=axiata_changes;User ID=faizan;Password=admin123";
+            //constr = "Server=localhost;Port=3306;Database=axiata15;User ID=faizan;Password=admin123";
             constr = ConfigurationManager.ConnectionStrings["AxiataConnectionString"].ConnectionString;
         }
 
