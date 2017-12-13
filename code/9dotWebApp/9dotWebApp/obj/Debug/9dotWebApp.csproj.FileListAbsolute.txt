@@ -100,39 +100,6 @@ F:\office\Code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Web.xml
 F:\office\Code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.WindowsServer.xml
 F:\office\Code\9dotWebApp\9dotWebApp\bin\Microsoft.ApplicationInsights.xml
 F:\office\Code\9dotWebApp\9dotWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\ApplicationInsights.config
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\csc.exe
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CodeAnalysis.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CSharp.Core.targets
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\System.Collections.Immutable.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\System.Reflection.Metadata.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\vbc.exe
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\VBCSCompiler.exe
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\VBCSCompiler.exe.config
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\9dotWebApp.dll.config
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\9dotWebApp.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\9dotWebApp.pdb
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Agent.Intercept.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.DependencyCollector.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.PerfCounterCollector.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.ServerTelemetryChannel.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Web.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.WindowsServer.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.ApplicationInsights.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.DependencyCollector.xml
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.ServerTelemetryChannel.xml
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Web.xml
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.WindowsServer.xml
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.ApplicationInsights.xml
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.csprojResolveAssemblyReference.cache
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.dll
-D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.pdb
 F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\ApplicationInsights.config
 F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\csc.exe
 F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -165,3 +132,36 @@ F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.Applicat
 F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.dll
 F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.pdb
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\System.Collections.Immutable.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\System.Reflection.Metadata.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\VBCSCompiler.exe
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\ApplicationInsights.config
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\csc.exe
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\vbc.exe
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\VBCSCompiler.exe.config
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\9dotWebApp.dll.config
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\9dotWebApp.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\9dotWebApp.pdb
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.DependencyCollector.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Web.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.WindowsServer.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.ApplicationInsights.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.DependencyCollector.xml
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Web.xml
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.WindowsServer.xml
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.ApplicationInsights.xml
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.csprojResolveAssemblyReference.cache
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.dll
+D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.pdb

@@ -96,6 +96,8 @@ namespace _9dotWebApp
 
                             //OPEX
                             TextBox8.Text = helper.applyThousandFormat(dr_data["o_manpower"].ToString());
+                            TextBox7.Text = helper.applyThousandFormat(dr_data["o_incidental_opex"].ToString());
+                            TextBox14.Text = helper.applyThousandFormat(dr_data["o_network_cost"].ToString());
                             TextBox9.Text = helper.applyThousandFormat(dr_data["o_travelling"].ToString());
                             TextBox10.Text = helper.applyThousandFormat(dr_data["o_it_charges"].ToString());
                             TextBox11.Text = helper.applyThousandFormat(dr_data["o_marketing_costs"].ToString());
@@ -125,6 +127,8 @@ namespace _9dotWebApp
 
                             //OPEX
                             TextBox8.Text = dr_data["o_manpower"].ToString();
+                            TextBox7.Text = dr_data["o_incidental_opex"].ToString();
+                            TextBox14.Text = dr_data["o_network_cost"].ToString();
                             TextBox9.Text = dr_data["o_travelling"].ToString();
                             TextBox10.Text = dr_data["o_it_charges"].ToString();
                             TextBox11.Text = dr_data["o_marketing_costs"].ToString();
@@ -186,6 +190,8 @@ namespace _9dotWebApp
                                 + ", dc_others"
                                 + ", dc_gross_profit"
                                 + ", o_manpower"
+                                + ", o_incidental_opex"
+                                + ", o_network_cost"
                                 + ", o_travelling"
                                 + ", o_it_charges"
                                 + ", o_marketing_costs"
@@ -201,6 +207,7 @@ namespace _9dotWebApp
                                 + ", month_id"
                                 + ", currency"
                                 + ", edit_mode"
+                                + ", ads_equity_share"
                                 + ") values ("
                                 + " @year"
                                 + ", @month"
@@ -215,6 +222,8 @@ namespace _9dotWebApp
                                 + ", @dc_others"
                                 + ", @dc_gross_profit"
                                 + ", @o_manpower"
+                                + ", @o_incidental_opex"
+                                + ", @o_network_cost"
                                 + ", @o_travelling"
                                 + ", @o_it_charges"
                                 + ", @o_marketing_costs"
@@ -229,7 +238,8 @@ namespace _9dotWebApp
                                 + ", @profit_after_tax"
                                 + ", @month_id"
                                 + ", @currency"
-                                + ", @edit_mode)";
+                                + ", @edit_mode"
+                                + ", @ads_equity_share)";
 
                 MySqlCommand cmd_insert = new MySqlCommand();
                 cmd_insert.Connection = sqlconn;
@@ -247,6 +257,8 @@ namespace _9dotWebApp
                 cmd_insert.Parameters.AddWithValue("@dc_others", TextBox6.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@dc_gross_profit", Label6.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@o_manpower", TextBox8.Text.Trim().TrimStart('0'));
+                cmd_insert.Parameters.AddWithValue("@o_incidental_opex", TextBox7.Text.Trim().TrimStart('0'));
+                cmd_insert.Parameters.AddWithValue("@o_network_cost", TextBox14.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@o_travelling", TextBox9.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@o_it_charges", TextBox10.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@o_marketing_costs", TextBox11.Text.Trim().TrimStart('0'));
@@ -262,6 +274,7 @@ namespace _9dotWebApp
                 cmd_insert.Parameters.AddWithValue("@month_id", Convert.ToInt32(monthId));
                 cmd_insert.Parameters.AddWithValue("@currency",currency);
                 cmd_insert.Parameters.AddWithValue("@edit_mode", "1");
+                cmd_insert.Parameters.AddWithValue("@ads_equity_share", "0");
 
                 int rowCount = cmd_insert.ExecuteNonQuery();
                 if (rowCount >= 1)
@@ -326,6 +339,8 @@ namespace _9dotWebApp
                                 + ", dc_others = @dc_others"
                                 + ", dc_gross_profit = @dc_gross_profit"
                                 + ", o_manpower = @o_manpower"
+                                + ", o_incidental_opex = @o_incidental_opex"
+                                + ", o_network_cost = @o_network_cost"
                                 + ", o_travelling = @o_travelling"
                                 + ", o_it_charges = @o_it_charges"
                                 + ", o_marketing_costs = @o_marketing_costs"
@@ -341,6 +356,7 @@ namespace _9dotWebApp
                                 + ", month_id = @month_id"
                                 + ", currency = @currency"
                                 + ", edit_mode = @edit_mode"
+                                + ", ads_equity_share = @ads_equity_share"
                                 + " WHERE id = @id";
 
                 MySqlCommand cmd_insert = new MySqlCommand();
@@ -360,6 +376,8 @@ namespace _9dotWebApp
                 cmd_insert.Parameters.AddWithValue("@dc_others", TextBox6.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@dc_gross_profit", Label6.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@o_manpower", TextBox8.Text.Trim().TrimStart('0'));
+                cmd_insert.Parameters.AddWithValue("@o_incidental_opex", TextBox7.Text.Trim().TrimStart('0'));
+                cmd_insert.Parameters.AddWithValue("@o_network_cost", TextBox14.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@o_travelling", TextBox9.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@o_it_charges", TextBox10.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@o_marketing_costs", TextBox11.Text.Trim().TrimStart('0'));
@@ -375,6 +393,7 @@ namespace _9dotWebApp
                 cmd_insert.Parameters.AddWithValue("@month_id", Convert.ToInt32(monthId));
                 cmd_insert.Parameters.AddWithValue("@currency", currency);
                 cmd_insert.Parameters.AddWithValue("@edit_mode", "0");
+                cmd_insert.Parameters.AddWithValue("@ads_equity_share", "0");
 
                 int rowCount = cmd_insert.ExecuteNonQuery();
                 if (rowCount >= 1)
@@ -425,6 +444,8 @@ namespace _9dotWebApp
                                 + ", dc_others"
                                 + ", dc_gross_profit"
                                 + ", o_manpower"
+                                + ", o_incidental_opex"
+                                + ", o_network_cost"
                                 + ", o_travelling"
                                 + ", o_it_charges"
                                 + ", o_marketing_costs"
@@ -440,6 +461,7 @@ namespace _9dotWebApp
                                 + ", month_id"
                                 + ", currency"
                                 + ", edit_mode"
+                                + ", ads_equity_share"
                                 + ") values ("
                                 + " @year"
                                 + ", @month"
@@ -454,6 +476,8 @@ namespace _9dotWebApp
                                 + ", @dc_others"
                                 + ", @dc_gross_profit"
                                 + ", @o_manpower"
+                                + ", @o_incidental_opex"
+                                + ", @o_network_cost"
                                 + ", @o_travelling"
                                 + ", @o_it_charges"
                                 + ", @o_marketing_costs"
@@ -468,7 +492,8 @@ namespace _9dotWebApp
                                 + ", @profit_after_tax"
                                 + ", @month_id"
                                 + ", @currency"
-                                + ", @edit_mode)";
+                                + ", @edit_mode"
+                                + ", @ads_equity_share)";
 
                 MySqlCommand cmd_insert = new MySqlCommand();
                 cmd_insert.Connection = sqlconn;
@@ -486,6 +511,8 @@ namespace _9dotWebApp
                 cmd_insert.Parameters.AddWithValue("@dc_others", helper.applyRate(TextBox6.Text, rate, 0, "budget"));
                 cmd_insert.Parameters.AddWithValue("@dc_gross_profit", helper.applyRate(Label6.Text, rate, 0, "budget"));
                 cmd_insert.Parameters.AddWithValue("@o_manpower", helper.applyRate(TextBox8.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@o_incidental_opex", helper.applyRate(TextBox7.Text, rate, 0, "budget"));
+                cmd_insert.Parameters.AddWithValue("@o_network_cost", helper.applyRate(TextBox14.Text, rate, 0, "budget"));
                 cmd_insert.Parameters.AddWithValue("@o_travelling", helper.applyRate(TextBox9.Text, rate, 0, "budget"));
                 cmd_insert.Parameters.AddWithValue("@o_it_charges", helper.applyRate(TextBox10.Text, rate, 0, "budget"));
                 cmd_insert.Parameters.AddWithValue("@o_marketing_costs", helper.applyRate(TextBox11.Text, rate, 0, "budget"));
@@ -501,6 +528,7 @@ namespace _9dotWebApp
                 cmd_insert.Parameters.AddWithValue("@month_id", Convert.ToInt32(monthId));
                 cmd_insert.Parameters.AddWithValue("@currency", currency);
                 cmd_insert.Parameters.AddWithValue("@edit_mode", "0");
+                cmd_insert.Parameters.AddWithValue("@ads_equity_share", "0");
 
                 int rowCount = cmd_insert.ExecuteNonQuery();
                 if (rowCount >= 1)
@@ -559,6 +587,8 @@ namespace _9dotWebApp
                                 + ", dc_others = @dc_others"
                                 + ", dc_gross_profit = @dc_gross_profit"
                                 + ", o_manpower = @o_manpower"
+                                + ", o_incidental_opex = @o_incidental_opex"
+                                + ", o_network_cost = @o_network_cost"
                                 + ", o_travelling = @o_travelling"
                                 + ", o_it_charges = @o_it_charges"
                                 + ", o_marketing_costs = @o_marketing_costs"
@@ -574,6 +604,7 @@ namespace _9dotWebApp
                                 + ", month_id = @month_id"
                                 + ", currency = @currency"
                                 + ", edit_mode = @edit_mode"
+                                + ", ads_equity_share = @ads_equity_share"
                                 + " WHERE id = @id";
 
                 MySqlCommand cmd_insert = new MySqlCommand();
@@ -593,6 +624,8 @@ namespace _9dotWebApp
                 cmd_insert.Parameters.AddWithValue("@dc_others", TextBox6.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@dc_gross_profit", Label6.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@o_manpower", TextBox8.Text.Trim().TrimStart('0'));
+                cmd_insert.Parameters.AddWithValue("@o_incidental_opex", TextBox7.Text.Trim().TrimStart('0'));
+                cmd_insert.Parameters.AddWithValue("@o_network_cost", TextBox14.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@o_travelling", TextBox9.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@o_it_charges", TextBox10.Text.Trim().TrimStart('0'));
                 cmd_insert.Parameters.AddWithValue("@o_marketing_costs", TextBox11.Text.Trim().TrimStart('0'));
@@ -608,6 +641,7 @@ namespace _9dotWebApp
                 cmd_insert.Parameters.AddWithValue("@month_id", Convert.ToInt32(monthId));
                 cmd_insert.Parameters.AddWithValue("@currency", currency);
                 cmd_insert.Parameters.AddWithValue("@edit_mode", "1");
+                cmd_insert.Parameters.AddWithValue("@ads_equity_share", "0");
 
                 int rowCount = cmd_insert.ExecuteNonQuery();
                 if (rowCount >= 1)
@@ -805,9 +839,38 @@ namespace _9dotWebApp
                 }
                 else
                 {
-                    calculateValues();
-                    monthId = helper.getMonthIdForMonth(DropDownList4_month.SelectedValue);
-                    saveData();
+                    String year = DropDownList5_year.SelectedValue;
+                    String month = DropDownList4_month.SelectedValue;
+                    String country = DropDownList1_country.SelectedValue;
+                    String vertical = DropDownList2_vertical.SelectedValue;
+                    String type = DropDownList3_type.SelectedValue;
+
+                    Boolean dataCheck = checkDataExistsForRefresh(year, month, country, vertical, type);
+                    if (dataCheck == false)
+                    {
+                        calculateValues();
+                        monthId = helper.getMonthIdForMonth(DropDownList4_month.SelectedValue);
+                        saveData();
+                    }
+                    else {
+                        helper.changeDropDownListMode(DropDownList5_year, 1);
+                        helper.changeDropDownListMode(DropDownList4_month, 1);
+                        helper.changeDropDownListMode(DropDownList1_country, 1);
+                        helper.changeDropDownListMode(DropDownList2_vertical, 1);
+
+                        helper.changeTextBoxEditingMode(textBoxList, 0);
+
+                        helper.changeButtonMode(Button5_clear_all, 0);
+                        helper.changeButtonMode(Button2_edit, 1);
+                        helper.changeButtonMode(Button3_save, 0);
+                        helper.changeButtonMode(Button4_submit, 1);
+                        helper.changeButtonMode(Button6_view, 1);
+
+                        populateGridData(year, month, country, vertical, type);
+                        calculateDCandOPEX(1);
+
+                        ViewState["updateRow"] = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -822,18 +885,32 @@ namespace _9dotWebApp
                 DataObject.HelperClass helper = new DataObject.HelperClass();
                 helper.clearZeroStrings(textBoxList);
 
+                String year = DropDownList5_year.SelectedValue;
+                String month = DropDownList4_month.SelectedValue;
+                String country = DropDownList1_country.SelectedValue;
+                String vertical = DropDownList2_vertical.SelectedValue;
+                String type = DropDownList3_type.SelectedValue;
+
                 conn = new DataObject.DbConnection();
 
                 string confirmValue = Request.Form["confirm_value"];
                 if (confirmValue == "Yes")
                 {
                     //write code to submit data with multiplications
-                    currency = helper.getCurrencyForCountry(DropDownList1_country.SelectedValue, DropDownList2_vertical.SelectedValue);
-                    monthId = helper.getMonthIdForMonth(DropDownList4_month.SelectedValue);
-                    calculateValues();
-                    updateSubmitData();
-                    insertDataWithRatesApplied("Actual");
-                    insertDataWithRatesApplied("CC");
+                    Boolean dataCheck = checkDataExistsForRefresh(year, month, country, vertical, "Actual");
+                    if (dataCheck == false)
+                    {
+                        currency = helper.getCurrencyForCountry(DropDownList1_country.SelectedValue, DropDownList2_vertical.SelectedValue);
+                        monthId = helper.getMonthIdForMonth(DropDownList4_month.SelectedValue);
+                        calculateValues();
+                        updateSubmitData();
+                        insertDataWithRatesApplied("Actual");
+                        insertDataWithRatesApplied("CC");
+                    }
+                    else if (dataCheck == true)
+                    {
+                        //do nothing
+                    }
                 }
                 else
                 {
@@ -953,6 +1030,8 @@ namespace _9dotWebApp
                 textBoxList.Add(TextBox4);
                 textBoxList.Add(TextBox5);
                 textBoxList.Add(TextBox6);
+                textBoxList.Add(TextBox7);
+                textBoxList.Add(TextBox14);
                 textBoxList.Add(TextBox8);
                 textBoxList.Add(TextBox9);
                 textBoxList.Add(TextBox10);
@@ -976,7 +1055,7 @@ namespace _9dotWebApp
                 Decimal A_gr;
                 Decimal B_direct_costs, B1_network, B2_direct_labor, B3_commissions, B4_others;
                 Decimal C_gross_profit;
-                Decimal D_opex, D1_manpower, D2_travelling, D3_it_charges, D4_marketing_costs, D5_professional_charges, D6_others;
+                Decimal D_opex, D1_manpower, D2_travelling, D3_it_charges, D4_marketing_costs, D5_professional_charges, D6_others, D7_incidental_opex, D8_network_cost;
                 Decimal E_ebitda;
                 Decimal F_depreciation, G_net_interest, H_others, I_share_of_results, J_tax;
                 Decimal K_profit_after_tax;
@@ -1002,8 +1081,10 @@ namespace _9dotWebApp
                 Decimal.TryParse(TextBox11.Text, out D4_marketing_costs);
                 Decimal.TryParse(TextBox12.Text, out D5_professional_charges);
                 Decimal.TryParse(TextBox13.Text, out D6_others);
+                Decimal.TryParse(TextBox7.Text, out D7_incidental_opex);
+                Decimal.TryParse(TextBox14.Text, out D8_network_cost);
 
-                D_opex = D1_manpower + D2_travelling + D3_it_charges + D4_marketing_costs + D5_professional_charges + D6_others;
+                D_opex = D1_manpower + D2_travelling + D3_it_charges + D4_marketing_costs + D5_professional_charges + D6_others + D7_incidental_opex + D8_network_cost;
                 Label10.Text = Convert.ToString(Decimal.Round(D_opex, 5));
                 E_ebitda = C_gross_profit - D_opex;
 
@@ -1033,8 +1114,8 @@ namespace _9dotWebApp
                 DataObject.HelperClass helper = new DataObject.HelperClass();
 
                 Decimal B_direct_costs, B1_network, B2_direct_labor, B3_commissions, B4_others;
-                Decimal D_opex, D1_manpower, D2_travelling, D3_it_charges, D4_marketing_costs, D5_professional_charges, D6_others;
-                
+                Decimal D_opex, D1_manpower, D2_travelling, D3_it_charges, D4_marketing_costs, D5_professional_charges, D6_others, D7_incidental_opex, D8_network_cost;
+
                 Decimal.TryParse(TextBox3.Text, out B1_network);
                 Decimal.TryParse(TextBox4.Text, out B2_direct_labor);
                 Decimal.TryParse(TextBox5.Text, out B3_commissions);
@@ -1056,8 +1137,10 @@ namespace _9dotWebApp
                 Decimal.TryParse(TextBox11.Text, out D4_marketing_costs);
                 Decimal.TryParse(TextBox12.Text, out D5_professional_charges);
                 Decimal.TryParse(TextBox13.Text, out D6_others);
+                Decimal.TryParse(TextBox7.Text, out D7_incidental_opex);
+                Decimal.TryParse(TextBox14.Text, out D8_network_cost);
 
-                D_opex = D1_manpower + D2_travelling + D3_it_charges + D4_marketing_costs + D5_professional_charges + D6_others;
+                D_opex = D1_manpower + D2_travelling + D3_it_charges + D4_marketing_costs + D5_professional_charges + D6_others + D7_incidental_opex + D8_network_cost;
                 if (editMode == 0)
                 {
                     Label10.Text = helper.applyThousandFormat(Convert.ToString(Decimal.Round(D_opex, 5)));
@@ -1073,46 +1156,48 @@ namespace _9dotWebApp
             }
         }        
 
-        private Boolean checkDataExists()
+        private Boolean checkDataExistsForRefresh(String year, String month, String country, String vertical, String type)
         {
+            Boolean budgetExists = false;
+            try
             {
-                Boolean exists = false;
-                try
+                conn = new DataObject.DbConnection();
+                sqlconn = conn.getDatabaseConnection();
+
+                String query = "SELECT *"
+                                + " FROM tb_setup_budget"
+                                + " WHERE year = @year"
+                                + " AND month = @month"
+                                + " AND country = @country"
+                                + " AND vertical = @vertical"
+                                + " AND type = @type";
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = sqlconn;
+                cmd.CommandText = query;
+                cmd.Parameters.AddWithValue("@year", year);
+                cmd.Parameters.AddWithValue("@month", month);
+                cmd.Parameters.AddWithValue("@country", country);
+                cmd.Parameters.AddWithValue("@vertical", vertical);
+                cmd.Parameters.AddWithValue("@type", type);
+
+                MySqlDataReader dr_data = cmd.ExecuteReader();
+
+                if (dr_data.HasRows)
                 {
-                    conn = new DataObject.DbConnection();
-                    sqlconn = conn.getDatabaseConnection();
-
-                    String query = "SELECT *"
-                                    + " FROM tb_setup_budget"
-                                    + " WHERE year = @year"
-                                    + " AND month = @month"
-                                    + " AND country = @country";
-
-                    MySqlCommand cmd_exists = new MySqlCommand();
-                    cmd_exists.Connection = sqlconn;
-                    cmd_exists.CommandText = query;
-                    cmd_exists.Parameters.AddWithValue("@year", DropDownList5_year.SelectedValue);
-                    cmd_exists.Parameters.AddWithValue("@month", DropDownList4_month.SelectedValue);
-                    cmd_exists.Parameters.AddWithValue("@country", DropDownList1_country.SelectedValue);
-
-                    MySqlDataReader dr_data = cmd_exists.ExecuteReader();
-
-                    if (dr_data.HasRows)
-                    {
-                        exists = true;
-                    }
-                    else
-                    {
-                        exists = false;
-                    }
-                    conn.closeConn(sqlconn);
+                    budgetExists = true;
                 }
-                catch (Exception ex)
+                else
                 {
-                    Debug.WriteLine(ex.ToString());
+                    budgetExists = false;
                 }
-                return exists;
+                conn.closeConn(sqlconn);
             }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+
+            return budgetExists;
         }
 
     }

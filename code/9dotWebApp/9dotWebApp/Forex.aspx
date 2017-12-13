@@ -875,7 +875,7 @@
                             <asp:TextBox ID="TextBox180" runat="server" ReadOnly="True"></asp:TextBox>
                         </td>
                         <td>
-                            <asp:TextBox ID="TextBox181" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="TextBox181" runat="server" TabIndex="6"></asp:TextBox>
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator107" runat="server" ControlToValidate="TextBox181" ValidationGroup="Group2" ErrorMessage="*" ValidationExpression="^[0-9]+([.][0-9]+)?$" ForeColor="#FFCC00"></asp:RegularExpressionValidator>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TextBox181" ErrorMessage="*" ForeColor="Red" ValidationGroup="Group2"></asp:RequiredFieldValidator>
                         </td>

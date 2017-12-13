@@ -243,27 +243,43 @@ namespace _9dotWebApp
 
                 if (Convert.ToInt32(Session["edit_mode"]) == -1)
                 {
-                    setAllCCGridData();
-                    for (int i = 0; i < currencies.Count; i++)
+                    Boolean dataExists = checkDataExistsForRefresh(DropDownList1.SelectedValue);
+                    if (dataExists == false)
                     {
-                        for (int j = 0; j < months.Count; j++)
+                        setAllCCGridData();
+                        for (int i = 0; i < currencies.Count; i++)
                         {
-                            String currency = currencies[i];
-                            String year = DropDownList1.SelectedValue;
-                            String value = getCurrencyCCRateFromTextBox(currency);
-                            String month = months[j];
-                            String monthId = helper.getMonthIdForMonth(months[j]);
-                            String edit_mode = "1";
-                            insertCCData(currency, year, value, month, monthId, edit_mode);
+                            for (int j = 0; j < months.Count; j++)
+                            {
+                                String currency = currencies[i];
+                                String year = DropDownList1.SelectedValue;
+                                String value = getCurrencyCCRateFromTextBox(currency);
+                                String month = months[j];
+                                String monthId = helper.getMonthIdForMonth(months[j]);
+                                String edit_mode = "1";
+                                String quarter = helper.getQuarterForMonth(month);
+                                insertCCData(currency, year, value, month, monthId, edit_mode, quarter);
+                            }
                         }
                     }
+                    else if (dataExists == true)
+                    {
+                        helper.changeTextBoxEditingMode(cc_rate_edit_tb_list, 0);
+                        helper.changeButtonMode(Button5_edit_cc, 1);
+                        helper.changeButtonMode(Button6_save_cc, 0);
+                        helper.changeButtonMode(Button7_submit_cc, 1);
+                        helper.changeDropDownListMode(DropDownList1, 1);
+                        helper.changeButtonMode(Button1_view, 1);
 
-                    helper.changeTextBoxEditingMode(cc_rate_edit_tb_list, 0);
-                    helper.changeButtonMode(Button5_edit_cc, 1);
-                    helper.changeButtonMode(Button6_save_cc, 0);
-                    helper.changeButtonMode(Button7_submit_cc, 1);
-                    helper.changeDropDownListMode(DropDownList1, 1);
-                    helper.changeButtonMode(Button1_view, 1);
+                        populateCCRateData(currencies[0], TextBox147);
+                        populateCCRateData(currencies[1], TextBox148);
+                        populateCCRateData(currencies[2], TextBox149);
+                        populateCCRateData(currencies[3], TextBox150);
+                        populateCCRateData(currencies[4], TextBox151);
+                        populateCCRateData(currencies[5], TextBox181);
+
+                        setAllCCGridData();
+                    }
                 }
                 else if (Convert.ToInt32(Session["edit_mode"]) == 1)
                 {
@@ -277,7 +293,8 @@ namespace _9dotWebApp
                             String value = getCurrencyCCRateFromTextBox(currency);
                             String month = months[j];
                             String edit_mode = "1";
-                            updateCCData(currency, year, value, month, edit_mode);
+                            String quarter = helper.getQuarterForMonth(month);
+                            updateCCData(currency, year, value, month, edit_mode, quarter);
                         }
                     }
 
@@ -396,7 +413,8 @@ namespace _9dotWebApp
                             String value = getCurrencyCCRateFromTextBox(currency);
                             String month = months[j];
                             String edit_mode = "0";
-                            updateCCData(currency, year, value, month, edit_mode);
+                            String quarter = helper.getQuarterForMonth(month);
+                            updateCCData(currency, year, value, month, edit_mode, quarter);
                         }
                     }
 
@@ -1603,7 +1621,7 @@ namespace _9dotWebApp
             }
         }
 
-        private void insertCCData(String currency, String year, String value, String month, String month_id, String edit_mode)
+        private void insertCCData(String currency, String year, String value, String month, String month_id, String edit_mode, String quarter)
         {
             try {
                 DataObject.HelperClass helper = new DataObject.HelperClass();
@@ -1612,6 +1630,7 @@ namespace _9dotWebApp
                 String query = "INSERT INTO tb_cc_rate("
                                 + "currency"
                                 + ", year"
+                                + ", quarter"
                                 + ", cc_rate_value"
                                 + ", month"
                                 + ", month_id"
@@ -1619,6 +1638,7 @@ namespace _9dotWebApp
                                 + ") values ("
                                 + " @currency"
                                 + ", @year"
+                                + ", @quarter"
                                 + ", @cc_rate_value"
                                 + ", @month"
                                 + ", @month_id"
@@ -1633,11 +1653,28 @@ namespace _9dotWebApp
                 cmd_cc_data_insert.Parameters.AddWithValue("@month", month);
                 cmd_cc_data_insert.Parameters.AddWithValue("@month_id", Convert.ToInt32(month_id));
                 cmd_cc_data_insert.Parameters.AddWithValue("@edit_mode", edit_mode);
+                cmd_cc_data_insert.Parameters.AddWithValue("@quarter", quarter);
 
                 int rowCount = cmd_cc_data_insert.ExecuteNonQuery();
                 if (rowCount >= 1)
                 {
                     helper.showAlert(this.Page, "Data saved successfully!");
+
+                    helper.changeTextBoxEditingMode(cc_rate_edit_tb_list, 0);
+                    helper.changeButtonMode(Button5_edit_cc, 1);
+                    helper.changeButtonMode(Button6_save_cc, 0);
+                    helper.changeButtonMode(Button7_submit_cc, 1);
+                    helper.changeDropDownListMode(DropDownList1, 1);
+                    helper.changeButtonMode(Button1_view, 1);
+
+                    populateCCRateData(currencies[0], TextBox147);
+                    populateCCRateData(currencies[1], TextBox148);
+                    populateCCRateData(currencies[2], TextBox149);
+                    populateCCRateData(currencies[3], TextBox150);
+                    populateCCRateData(currencies[4], TextBox151);
+                    populateCCRateData(currencies[5], TextBox181);
+
+                    setAllCCGridData();
                 } else
                 {
                     helper.showAlert(this.Page, "Please check your data for errors!");
@@ -1650,7 +1687,7 @@ namespace _9dotWebApp
             }
         }
 
-        private void updateCCData(String currency, String year, String value, String month, String edit_mode)
+        private void updateCCData(String currency, String year, String value, String month, String edit_mode, String quarter)
         {
             try
             {
@@ -1662,7 +1699,8 @@ namespace _9dotWebApp
                                 + ", edit_mode = @edit_mode"
                                 + " WHERE currency = @currency"
                                 + " AND year = @year"
-                                + " AND month = @month";
+                                + " AND month = @month"
+                                + " AND quarter = @quarter";
 
 
                 MySqlCommand cmd_cc_data_update = new MySqlCommand();
@@ -1673,6 +1711,7 @@ namespace _9dotWebApp
                 cmd_cc_data_update.Parameters.AddWithValue("@cc_rate_value", value);
                 cmd_cc_data_update.Parameters.AddWithValue("@month", month);
                 cmd_cc_data_update.Parameters.AddWithValue("@edit_mode", edit_mode);
+                cmd_cc_data_update.Parameters.AddWithValue("@quarter", quarter);
 
                 int rowCount = cmd_cc_data_update.ExecuteNonQuery();
                 if (rowCount >= 1)
@@ -2006,6 +2045,43 @@ namespace _9dotWebApp
             {
                 Debug.WriteLine(ex.ToString());
             }
+        }
+
+        private Boolean checkDataExistsForRefresh(String year)
+        {
+            Boolean ccExists = false;
+            try
+            {
+                conn = new DataObject.DbConnection();
+                sqlconn = conn.getDatabaseConnection();
+
+                String query = "SELECT *"
+                                + " FROM tb_cc_rate"
+                                + " WHERE year = @year";
+
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = sqlconn;
+                cmd.CommandText = query;
+                cmd.Parameters.AddWithValue("@year", year);
+
+                MySqlDataReader dr_data = cmd.ExecuteReader();
+
+                if (dr_data.HasRows)
+                {
+                    ccExists = true;
+                }
+                else
+                {
+                    ccExists = false;
+                }
+                conn.closeConn(sqlconn);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+
+            return ccExists;
         }
     }   
 }

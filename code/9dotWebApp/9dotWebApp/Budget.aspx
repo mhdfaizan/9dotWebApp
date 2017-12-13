@@ -258,6 +258,24 @@
             </div>
             <div class="clearfix"></div>
             <div class="form-group">
+                <label class="col-lg-10 control-label" for="email">Incidental OPEX</label>
+                <div class="col-lg-2">
+                    <asp:TextBox ID="TextBox7" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TextBox7" ValidationGroup="Group1" ErrorMessage="*" ValidationExpression="^[0-9]+([.][0-9]+)?$" ForeColor="#FFCC00"></asp:RegularExpressionValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TextBox7" ErrorMessage="*" ForeColor="Red" ValidationGroup="Group1"></asp:RequiredFieldValidator>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group">
+                <label class="col-lg-10 control-label" for="email">Network Cost</label>
+                <div class="col-lg-2">
+                    <asp:TextBox ID="TextBox14" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="TextBox14" ValidationGroup="Group1" ErrorMessage="*" ValidationExpression="^[0-9]+([.][0-9]+)?$" ForeColor="#FFCC00"></asp:RegularExpressionValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TextBox14" ErrorMessage="*" ForeColor="Red" ValidationGroup="Group1"></asp:RequiredFieldValidator>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group">
                 <label class="col-lg-10 control-label" for="email">Travelling</label>
                 <div class="col-lg-2">
                     <asp:TextBox ID="TextBox9" CssClass="form-control" runat="server"></asp:TextBox>
