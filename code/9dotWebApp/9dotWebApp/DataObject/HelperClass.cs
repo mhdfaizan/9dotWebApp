@@ -245,18 +245,28 @@ namespace _9dotWebApp.DataObject
         {
             try
             {
-                int currentYear = DateTime.Now.Year;
+                conn = new DataObject.DbConnection();
+                sqlconn = conn.getDatabaseConnection();
 
-                currentYear = currentYear - 2;
-                for (int i = 0; i < 6; i++)
-                {
-                    ListItem newItem = new ListItem(currentYear.ToString(), currentYear.ToString());
-                    dropdownlist.Items.Insert(i, newItem);
-                    currentYear++;
-                }
+                // Years Dropdownlist
+                String query = "SELECT year FROM tb_years";
+                MySqlCommand cmd_years = new MySqlCommand();
+                cmd_years.Connection = sqlconn;
+                cmd_years.CommandText = query;
+
+                MySqlDataAdapter da_years = new MySqlDataAdapter(cmd_years);
+                DataTable dt_years = new DataTable();
+                da_years.Fill(dt_years);
+
+                dropdownlist.DataSource = dt_years;
+                dropdownlist.DataValueField = dt_years.Columns[0].ColumnName;
+                dropdownlist.DataTextField = dt_years.Columns[0].ColumnName;
                 dropdownlist.DataBind();
+
                 ListItem item = new ListItem("", "");
                 dropdownlist.Items.Insert(0, item);
+
+                conn.closeConn(sqlconn);
             }
             catch (Exception ex)
             {

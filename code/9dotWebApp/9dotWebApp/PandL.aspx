@@ -157,6 +157,10 @@
                     <td class="form-group">
                         <asp:Button ID="Button6_view" CssClass="btn-sub-enabled" runat="server" OnClick="Button6_Click_ViewData" Text="View" ValidationGroup="ViewData" />
                     </td>
+                    <td>&nbsp; &nbsp;</td>
+                    <td class="form-group">
+                        <asp:Button ID="Button4_submit" runat="server" Text="Submit" OnClick="Button4_Click_SubmitData" OnClientClick="Confirm()" />
+                    </td>
                 </tr>
             </table>
         </div>
@@ -490,9 +494,6 @@
                     </td>
                     <td>
                         <asp:Button ID="Button3_save" runat="server" Text="Save &amp; Exit" OnClick="Button3_Click_SaveData" ValidationGroup="Group1" />
-                    </td>
-                    <td>
-                        <asp:Button ID="Button4_submit" runat="server" Text="Submit" OnClick="Button4_Click_SubmitData" OnClientClick="Confirm()" />
                     </td>
                 </tr>
             </table>
