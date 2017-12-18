@@ -100,38 +100,6 @@ F:\office\Code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Web.xml
 F:\office\Code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.WindowsServer.xml
 F:\office\Code\9dotWebApp\9dotWebApp\bin\Microsoft.ApplicationInsights.xml
 F:\office\Code\9dotWebApp\9dotWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\ApplicationInsights.config
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\csc.exe
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CodeAnalysis.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CSharp.Core.targets
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\System.Collections.Immutable.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\System.Reflection.Metadata.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\vbc.exe
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\VBCSCompiler.exe
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\VBCSCompiler.exe.config
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\9dotWebApp.dll.config
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\9dotWebApp.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\9dotWebApp.pdb
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Agent.Intercept.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.DependencyCollector.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.PerfCounterCollector.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.ServerTelemetryChannel.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Web.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.WindowsServer.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.ApplicationInsights.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.DependencyCollector.xml
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.ServerTelemetryChannel.xml
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Web.xml
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.WindowsServer.xml
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.ApplicationInsights.xml
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.dll
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.pdb
 D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\ApplicationInsights.config
 D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\csc.exe
 D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -165,3 +133,36 @@ D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\bin\Microsoft.CodeDom.Provide
 D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.csprojResolveAssemblyReference.cache
 D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.dll
 D:\Pilot0001\PILOT_0001\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.pdb
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\ApplicationInsights.config
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\csc.exe
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\System.Collections.Immutable.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\System.Reflection.Metadata.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\vbc.exe
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\VBCSCompiler.exe
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\roslyn\VBCSCompiler.exe.config
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\9dotWebApp.dll.config
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\9dotWebApp.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\9dotWebApp.pdb
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Agent.Intercept.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.DependencyCollector.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.PerfCounterCollector.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.ServerTelemetryChannel.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Web.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.WindowsServer.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.ApplicationInsights.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.DependencyCollector.xml
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.ServerTelemetryChannel.xml
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Web.xml
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.WindowsServer.xml
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.ApplicationInsights.xml
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.csprojResolveAssemblyReference.cache
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.dll
+F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.pdb
