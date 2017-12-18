@@ -149,7 +149,7 @@
                     </td>
                     <td>&nbsp; &nbsp;</td>
                     <td class="form-group">
-                        <asp:Button ID="Button4_submit" runat="server" Text="Submit" OnClick="Button4_Click_SubmitData" OnClientClick="Confirm()" />
+                        <asp:Button ID="Button2_edit" runat="server" Text="Edit" OnClick="Button2_Click_EditData" ValidationGroup="ViewData" />
                     </td>   
                 </tr>
             </table>
@@ -396,10 +396,10 @@
                     <asp:Button ID="Button5_clear_all" runat="server" Text="Clear all" OnClick="Button5_Click_ClearAllData" />
                 </td>
                 <td>
-                    <asp:Button ID="Button2_edit" runat="server" Text="Edit" OnClick="Button2_Click_EditData" ValidationGroup="ViewData" />
-                </td>
-                <td>
                     <asp:Button ID="Button3_save" runat="server" Text="Save &amp; Exit" OnClick="Button3_Click_SaveData" OnClientClick="return Validate()" />
+                </td>
+                 <td>
+                    <asp:Button ID="Button4_submit" runat="server" Text="Submit" OnClick="Button4_Click_SubmitData" OnClientClick="Confirm()" />
                 </td>
             </tr>
         </table>

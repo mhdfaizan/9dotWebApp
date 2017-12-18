@@ -166,13 +166,13 @@ namespace _9dotWebApp {
         protected global::System.Web.UI.WebControls.Button Button6_view;
         
         /// <summary>
-        /// Button4_submit control.
+        /// Button2_edit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4_submit;
+        protected global::System.Web.UI.WebControls.Button Button2_edit;
         
         /// <summary>
         /// Label33 control.
@@ -967,15 +967,6 @@ namespace _9dotWebApp {
         protected global::System.Web.UI.WebControls.Button Button5_clear_all;
         
         /// <summary>
-        /// Button2_edit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2_edit;
-        
-        /// <summary>
         /// Button3_save control.
         /// </summary>
         /// <remarks>
@@ -983,5 +974,14 @@ namespace _9dotWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button3_save;
+        
+        /// <summary>
+        /// Button4_submit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button4_submit;
     }
 }
