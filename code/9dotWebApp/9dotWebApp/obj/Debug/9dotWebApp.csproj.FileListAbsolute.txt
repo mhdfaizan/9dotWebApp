@@ -163,6 +163,5 @@ F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.Web.x
 F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.AI.WindowsServer.xml
 F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.ApplicationInsights.xml
 F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.csprojResolveAssemblyReference.cache
 F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.dll
 F:\office\git repos\9dotWebApp\code\9dotWebApp\9dotWebApp\obj\Debug\9dotWebApp.pdb

@@ -647,5 +647,17 @@ namespace _9dotWebApp.DataObject
             }
         }
 
+        public void setAllZeroes(List<TextBox> list) {
+            try
+            {
+                for(int i = 0; i < list.Count; i++)
+                {
+                    list[i].Text = "0";
+                }
+            }
+            catch (Exception ex) {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
     }
 }

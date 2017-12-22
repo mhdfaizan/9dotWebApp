@@ -800,6 +800,8 @@ namespace _9dotWebApp
                         helper.changeButtonMode(Button5_clear_all, 1);
                         helper.changeButtonMode(Button3_save, 1);
                         helper.changeButtonMode(Button4_submit, 0);
+
+                        helper.setAllZeroes(textBoxList);
                     }
                     else {
                         helper.showAlert(this.Page, "Please enter FOREX RATES to proceed!");
